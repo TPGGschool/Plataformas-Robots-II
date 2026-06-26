@@ -26,7 +26,7 @@ public class PlayerBehaviour : MonoBehaviour{
     }
     void playerMovement(){
         t_inputHorizontal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(t_inputHorizontal * t_movSpeed * Time.deltaTime, rb.velocity.y);
+        rb.linearVelocity = new Vector2(t_inputHorizontal * t_movSpeed * Time.deltaTime, rb.linearVelocity.y);
     }
     void playerJump(){
         if (Input.GetKeyDown(KeyCode.Space) && t_jumpCount > 0){
@@ -34,8 +34,8 @@ public class PlayerBehaviour : MonoBehaviour{
             t_jumpCount--;
             animator.SetBool("Jumping", true);
         }
-        if (rb.velocity.magnitude > t_maxJumpForce){
-            rb.velocity = rb.velocity.normalized * t_maxJumpForce;
+        if (rb.linearVelocity.magnitude > t_maxJumpForce){
+            rb.linearVelocity = rb.linearVelocity.normalized * t_maxJumpForce;
         }
     }
 
@@ -49,9 +49,9 @@ public class PlayerBehaviour : MonoBehaviour{
 
 
             // esto es para que el salto solo se resetee cuando toca el suelo, y no una pared, techo etc...
-            // Aquí se utiliza un condicional para verificar el ángulo entre la normal de la colisión y el vector hacia arriba (Vector2.up).
-            // La normal es un vector perpendicular a la superficie de colisión. 
-            // Este condicional verifica si el ángulo entre la normal y el vector hacia arriba es menor a 45 grados.
+            // Aquï¿½ se utiliza un condicional para verificar el ï¿½ngulo entre la normal de la colisiï¿½n y el vector hacia arriba (Vector2.up).
+            // La normal es un vector perpendicular a la superficie de colisiï¿½n. 
+            // Este condicional verifica si el ï¿½ngulo entre la normal y el vector hacia arriba es menor a 45 grados.
             // conseguido de stack overflow de usuario "Voidsay"
 
             // revisar todos los puntos de contacto
